@@ -1,0 +1,45 @@
+% !TEX root = ../Projektdokumentation.tex
+\section{Einleitung}
+\label{sec:Einleitung}
+
+
+\subsection{Projektumfeld} 
+\label{sec:Projektumfeld}
+Die ePages GmbH ist ein deutsches Software- und Dienstleistungsunternehmen, das Produkte zur Ermöglichung eines elektronischen Handels (E-Commerce) bereitstellt, d.h. Kunden können mit der Produktsoftware, die über Hosting-Provider wie Strato AG, 1 \& 1, T-Online etc. vertrieben wird, einen individualisierten Onlineshop aufsetzen und ihn gegen eine monatliche Gebühr betreiben.\\
+Die Firma wurde 1983 als ``Beeck \& Dahms GbR'' von dem jetztigen Geschäftsführer Wilfried Beeck in Kiel gegründet und war später Teil der Intershop AG bis zur Absplitterung im Jahr 2002. Momentan arbeiten in der Firma insgesamt rund 180 Mitarbeiter. Der Hauptsitz der Firma ist in Hamburg, danach kommt Jena als Firmensitz mit rund 40 Mitarbeitern. Der Auftrag zur Erstellung der App kommt vom Produktmanagement und ist aus Kundenrückmeldungen entstanden. Innerhalb der Firma gibt es verschiedene mehr oder minder unabhängige Entwicklungsteams. Ich bin dabei Teil des ePages6-Core-Teams als Frontend-/Javascriptentwickler, das wiederum Teil der R\& D-Abteilung ist. Die Projekterstellung findet halbtags während der Sprints statt, d.h. ich stehe daneben noch dem Team halbtäglich zur Unterstützung zur Verfügung und gehe in den Dailys auch immer auf den Status meines Projektes ein. 
+
+\subsection{Projektziel} 
+\label{sec:Projektziel}
+
+Ziel des Projektes ist die Erstellung einer externen WebApp für Endkunden eines ePages Onlineshops. Mit dieser App soll es für den Kunden möglich sein spezielle KPIs für deren Onlineshop berichtsmäßig dokumentiert und deren zeitliche Entwicklung angezeigt zu bekommen. Daraus sollen Hinweise zum Anpreisen bestimmter Artikel resultieren. Auf alle relevanten Bestelldaten des Onlineshops soll per REST-API zugegriffen werden. Die wichtigsten KPIs sind hierbei der Umsatz und die meistverkauften Produkte. Die Berichte sollen anpassbar an frei wählbare Zeiträume und den Bezahlstatus sein.
+
+
+
+\subsection{Projektbegründung} 
+\label{sec:Projektbegruendung}
+
+Für Endkunden eines ePages-Onlineshops besteht standardmäßig die Möglichkeit über das Erstellungsmenü ihres Shops verschiedene Analysewidgets auszuwählen, die jedoch nur die wesentlichen KPIs als Umsatz- und Artikelverkaufsstatistiken bereitstellen ohne daraus spezielleren Handlungsbedarf des Händlers abzuleiten. Durch eine Nutzerumfrage wurde festgestellt, dass von den Händlern genauere Analysen des Käuferverhaltens (Kaufabbruchrate, Herkunft, Bestellzeiten etc.) und mehr Anpassungsmöglichkeiten (KPIs pro Kunde) gewünscht werden. Die Kunden haben zwar die Möglichkeit sich bei externen Firmen wie etracker für umfangreiche Statistikauswertungen für ihren Onlineshop anzumelden, jedoch besitzt das ePages System auch einen eigenen App-Store, der sich als Verkaufsplattform für eine eigens dafür programmierte Statistik-App ebenfalls anbietet, welche auf die Nutzerwünsche zugeschnitten ist und damit höhere Nutzerbindung und Nutzerzufriedenheit als Zielsetzung hat. Das ist auch hinsichtlich der Vermarktung des neuesten Softwareproduktes von ePages sinnvoll, welches im nächsten Jahr ausgerollt wird und eine moderne Variante des Bestandsproduktes darstellt, wodurch neuen Kunden gewonnen werden sollen und die Konkurrenzfähigkeit auf dem bestehenden Markt gewährleistet werden soll. Nicht zuletzt verdient ePages auch aktiv an der Vermarktung der App pro Nutzer.
+
+
+\subsection{Projektschnittstellen} 
+\label{sec:Projektschnittstellen}
+
+Das Projekt wurde von meinem Ausbilder (Markus Höllein) und meinem direkten Disziplinarvorgesetzten (Mario Rieß) genehmigt, welcher stellvertretend für den Ausbildungsbetrieb spricht. \\
+ Die Projektmittel umfassen an Hardware einen leistungsstarken Laptop, zwei Monitore, ein externes Keyboard und eine Maus. An Software wird ein externer Zugang zu einem ePages-Developer-Shop benötigt, der exemplarisch als Anbindungsstelle für die zu entwickelnde App fungiert. Hard- und Software werden dabei vom Ausbildungsbetrieb bereitgestellt. Die App wird auf einem externen Server von ``uberspace.de'' gehostet, auf dem sich auch die MySQL-Datenbank der App befindet. Die monatlichen Kosten dafür übernehme ich selbst. Des Weiteren wird Git als Versionierungstool verwendet, wobei der firmeninterne GitHub-Zugang verwendet wird, um das Projekt auch extern auf dem GitHub-Server speichern zu können. Die Anbindung der App an die ePages-Software geschieht über die REST-API von ePages unter Verwendung von PHP. Dies geschieht in Zusammenarbeit mit erfahrenen Programmierern. Die finanziellen Mittel bzw. die Ausbildungsvergütung stellt die HR-Abteilung zur Verfügung.\\
+Nutzer der App können alle ePages-Endkunden sein, die sich für die kostenbehaftete Nutzung der App für ihren Onlineshop entschließen. Das Ergebnis des Projekts muss zuallererst der teaminternen QA-Abteilung zum Testen präsentiert werden. Bestehen hier keine Bedenken mehr, wird die App dem Produktmanagement vorgelegt, welches letztendlich darüber entscheidet die App in dem ePages-App-Store zur Nutzung anzubieten oder ob weitere Verbesserungen notwendig sind.\\
+Für die Programmierung der App werden verschiedene Javascript-Frameworks und Bibliotheken verwendet wie JQuery, React.js und D3.js, die allesamt kostenlos sind.
+
+\begin{itemize}
+	\item Mit welchen anderen Systemen interagiert die Anwendung (technische Schnittstellen)?
+	\item Wer genehmigt das Projekt \bzw stellt Mittel zur Verfügung? 
+	\item Wer sind die Benutzer der Anwendung?
+	\item Wem muss das Ergebnis präsentiert werden?
+\end{itemize}
+
+
+\subsection{Projektabgrenzung} 
+\label{sec:Projektabgrenzung}
+
+Das Projekt ist nicht Teil der ePages-Bestandssoftware oder irgendeines anderen ePages-Softwareproduktes, sondern stellt als externe App eine eigenständige Software dar, die mittels geeigneter API nicht nur an ePages, sondern auch an andere Onlineshopsoftware angebunden werden könnte. Vorrangig wird jedoch die Anbindung an ePages sein. Durch die Eigenständigkeit der App wird zudem gewährleistet, dass die Bestandssoftware bei Entwicklungsfehlern/Bugs in der App nicht in Mitleidenschaft gezogen wird. \\
+Das Projekt wird nur soweit entwickelt, dass die Grundfunktionalitäten vorhanden sind, womit alle geplanten Anwendungsfälle realisiert werden können. Der Feinschliff durch das Feedback aus der QA-Abteilung wird aus Zeitgründen in seiner Gänze nicht mehr Teil dieses Projektes sein können genauso wie die Einbeziehung des Feedbacks vom Produktmanagement oder die Integration in den ePages-App-Store.
+
