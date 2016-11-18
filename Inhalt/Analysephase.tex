@@ -1,26 +1,48 @@
-% !TEX root = ../Projektdokumentation.tex
+enü% !TEX root = ../Projektdokumentation.tex
 \section{Analysephase} 
 \label{sec:Analysephase}
 
 
 \subsection{Ist-Analyse} 
 \label{sec:IstAnalyse}
-Derzeit haben Mieter eines ePages-Onlineshops die Möglichkeit im Backoffice ihres Onlineshop, in dem alle wichtigen Shopeinstellungen zu treffen sind, zwei Analysewidgets auszuwählen. Das erste zeigt eine Top-3-Liste der meistverkauften Artikel der letzten 30 Tage an und das zweite den Nettoumsatz sowie die Anzahl der Bestellungen für heute, gestern, diese Woche, letzte Woche, diesen und letzten Monat an.
+Derzeit haben Mieter eines ePages-Onlineshops die Möglichkeit im Backoffice ihres Onlineshop, in dem alle wichtigen Shopeinstellungen zu treffen sind, zwei Analysewidgets auszuwählen, siehe \Abbildung{dashboard} Das erste zeigt eine Top-3-Liste der meistverkauften Artikel der letzten 30 Tage an und das zweite den Nettoumsatz sowie die Anzahl der Bestellungen für heute, gestern, diese Woche, letzte Woche, diesen und letzten Monat an.
 \begin{figure}[htb]
 \begin{center}
 \includegraphics[width=0.9\textwidth]{dashboard.png}
+\caption{Widgetauswahl im Dashboard eines Merchant-Backoffice eines ePages Onlineshops}
+\label{fig:dashboard}
 \end{center}
 \end{figure}
-Des Weiteren wurde bereits auf einem zweitägigen firmeninternen Hackathon im Frühjahr 2016 der Versuch der Programmierung einer Statistik-App unternommen, wobei dabei nur mit "Mock-Daten" hantiert wurde und keine echte Shopanbindung realisiert wurde. Die Ergebnisse zu dieser App sind auf einer internen Wikiseite veröffentlicht und liefern einen ersten Eindruck wie so eine App aussehen könnte und welche Funktionalitäten und Use-Cases ePages vorrangig für solch eine Statistik-App vorsieht.
+Des Weiteren wurde bereits auf einem zweitägigen firmeninternen Hackathon im Frühjahr 2016 der Versuch der Programmierung einer Statistik-App unternommen, wobei dabei nur mit \gqq{Mock-Daten}  hantiert wurde und keine echte Shopanbindung realisiert wurde. Die Ergebnisse zu dieser App sind auf einer internen Wikiseite veröffentlicht und liefern einen ersten Eindruck wie so eine App aussehen könnte und welche Funktionalitäten und Use-Cases ePages vorrangig für solch eine Statistik-App vorsieht. Zu sehen ist ein Menü, über das Bestellungs- und Artikelstatistiken anwählbar sind. In \Abbildung{order} sieht man wie eine graphische Darstellung von Umsätzen pro Bestellung aussehen könnte.
 
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.7\textwidth, scale=0.5]{epagesapp1.png}
+\caption{Graphische Darstellung von Bestellstatistiken}
+\label{fig:order}
+\end{center}
+\end{figure}
+
+\newpage
+
+In \Abbildung{product} werden Artikel mit Gesamtumsatz und Bestellanzahl aufgelistet. Diese Beispiel-App verwendet für das Frontend das AngularJS-Framework und die Backendskripte sind in Ruby on Rails programmiert. Datenbankanfragen oder angelegte Datenbanken gibt es keine, genauso wenig eine Registrierungs- oder Loginfunktionalität.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.7\textwidth, scale=0.5]{epagesapp2.png}
+\caption{Auflistung von Artikelstatistiken}
+\label{fig:product}
+\end{center}
+\end{figure}
+ 
 \subsection{Wirtschaftlichkeitsanalyse}
 \label{sec:Wirtschaftlichkeitsanalyse}
 
 \subsubsection{\gqq{Make or Buy}-Entscheidung}
 \label{sec:MakeOrBuyEntscheidung}
 
-Für jeden Endkunden einen ePages-Onlineshops besteht bereits die Möglichkeit über interne kostenlose Widgets den täglichen, wöchentlichen oder monatlichen Umsatz oder die für diese Zeiträume getätigten Bestellungen angezeigt zu bekommen. Zusätzlich können letzte Kundenregistrierungen und letzte Bestellungen angezeigt werden.
-Was fehlt sind hierbei tiefergehende statistische Analysen und grafische Darstellungen der wichtigsten und interessantesten KPIs für den Kunden, die sich dynamisch über REST-Calls aktualisieren lassen. Darunter fallen die Möglichkeit der Berichterstattung von KPIs pro Kunde und genauere Analysen des Käuferverhaltens (Kaufabbruchrate, Herkunft, Bestellzeiten etc.). Der Wunsch nach einer auf das ePages-System zugeschnittenen App für den ePages-App-Store wurde direkt vom Produktmanagement geäußert und sollte bereits schon mal während eines zweitägigen Hackathons entwickelt werden, was jedoch aufgrund des geschätzten zu hohem Zeitaufwands fallen gelassen wurde. Durch diese App verspricht sich das Produktmanagement eine höhere Kundenzufriedenheit und damit eine bessere Kundenbindung an die ePages Softwareprodukte sowie längerfristig eine Anwerbung neuer Kunden, die sich durch die Existenz dieser speziellen App vorzugsweise für ePages anstatt für eine andere Onlineshopsoftware entscheiden würden.
+Abgesehen von den im MBO hinzufügbaren Statistik-Wigdets
+fehlen tiefergehende statistische Analysen und grafische Darstellungen der wichtigsten und interessantesten KPIs, die sich dynamisch über REST-Calls aktualisieren lassen. Darunter fallen die Möglichkeit der Berichterstattung von KPIs pro Kunde und genauere Analysen des Käuferverhaltens (Kaufabbruchrate, Herkunft, Bestellzeiten etc.). Der Wunsch nach einer auf das ePages-System zugeschnittenen App für den ePages-App-Store wurde direkt vom Produktmanagement geäußert und sollte bereits schon mal während eines zweitägigen Hackathons entwickelt werden, was jedoch aufgrund des zu hohem Zeitaufwands für die Entwicklung bei weitem nicht fertig gestellt werden konnte. Durch diese App verspricht sich das Produktmanagement eine höhere Kundenzufriedenheit und damit eine bessere Kundenbindung an die ePages Softwareprodukte sowie längerfristig eine Anwerbung neuer Kunden, die sich durch die Existenz dieser speziellen App vorzugsweise für ePages anstatt für eine andere Onlineshopsoftware entscheiden würden.
 \subsubsection{Projektkosten}
 \label{sec:Projektkosten}
 
@@ -65,42 +87,92 @@ Aus dem Funktionsgraphen aus \Abbildung{AM} lässt sich die Amortisationszeit $t
 \label{fig:AM}
 \end{figure}
 
-\subsection{Nutzwertanalyse}
-\label{sec:Nutzwertanalyse}
-\begin{itemize}
-	\item Darstellung des nicht-monetären Nutzens (\zB Vorher-/Nachher-Vergleich anhand eines Wirtschaftlichkeitskoeffizienten). 
-\end{itemize}
-
-\paragraph{Beispiel}
-Ein Beispiel für eine Entscheidungsmatrix findet sich in Kapitel~\ref{sec:Architekturdesign}: \nameref{sec:Architekturdesign}.
-
-
 \subsection{Anwendungsfälle}
 \label{sec:Anwendungsfaelle}
-\begin{itemize}
-	\item Welche Anwendungsfälle soll das Projekt abdecken?
-	\item Einer oder mehrere interessante (!) Anwendungsfälle könnten exemplarisch durch ein Aktivitätsdiagramm oder eine \ac{EPK} detailliert beschrieben werden. 
-\end{itemize}
 
-\paragraph{Beispiel}
-Ein Beispiel für ein Use Case-Diagramm findet sich im \Anhang{app:UseCase}.
+Die zu entwickelnde App soll die folgenden Anwendungsfälle für den Nutzer/Merchant dargestellt in einem Anwendungfalldiagramm mindestens 
+realisiert haben.
+
+\begin{figure}[htb]
+\centering
+\includegraphicsKeepAspectRatio{usecase2.png}{1.0}
+\caption{Anwendungsfalldiagramm für die Statistik-App}
+\label{fig:usecase2}
+\end{figure}
 
 
 \subsection{Qualitätsanforderungen}
 \label{sec:Qualitaetsanforderungen}
-\begin{itemize}
-	\item Welche Qualitätsanforderungen werden an die Anwendung gestellt (\zB hinsichtlich Performance, Usability, Effizienz \etc (siehe \citet{ISO9126}))?
-\end{itemize}
+
+Die App soll intuitiv vom Benutzer bedien- bzw. navigierbar sein. Alle dargestellten Statistiken und Berichte sollen selbsterklärend sein. Die App wird als Single-Page-Anwendung programmiert, d.h. bei keiner Aktion des Benutzer soll ein Seitenneuladen ausgelöst werden. Bei Aktualisierung der Daten durch Datenbankabfragen, wenn beispielsweise die Währung oder der Zeitraum geändert wird, sollen alle betroffenen Diagramme und Berichte nahezu gleichzeitig mit den neuen Daten aktualisiert werden. Bei der Datensynchronisation soll der Nutzer eine Rückmeldung darüber erhalten, ob die Synchronisation noch im Gange ist oder nicht oder gar fehlgeschlagen ist.
+Zusätzlich soll für jeden Nutzer beim Login eine einstündig gültige Session gestartet werden, sodass die URL für diesen Client einzigartig ist und bei keinem anderen Clientcomputer oder Browser gleichzeitig verwendet werden kann. Das Design sollte für den Nutzer ansprechend sein und die App sollte in Ansätzen \gqq{responsive} sein, um auch auf mobilen Geräten benutzbar sein zu können.
+Die App soll frontend- und backendseitig modular aufgebaut sein, so dass Fehlerbeseitigung oder Modifizierungen schnell und übersichtlich möglich sind und sich konsistent in das Gesamtprogramm einfügen.
+Der Programmcode sollte strukturiert nach gängigen oder firminternen Code-Conventions sein und an allen wichtigen Stellen Kommentare für Entwickler enthalten.
 
 
 \subsection{Lastenheft/Fachkonzept}
 \label{sec:Lastenheft}
-\begin{itemize}
-	\item Auszüge aus dem Lastenheft/Fachkonzept, wenn es im Rahmen des Projekts erstellt wurde.
-	\item Mögliche Inhalte: Funktionen des Programms (Muss/Soll/Wunsch), User Stories, Benutzerrollen
-\end{itemize}
 
-\paragraph{Beispiel}
-Ein Beispiel für ein Lastenheft findet sich im \Anhang{app:Lastenheft}. 
+Die Anwendung muss folgende Anforderungen erfüllen:
+\begin{enumerate}
+\item Registrierungsmechanismus
+\begin{enumerate}
+\item Der Nutzer muss Vorname, Name, Email-Adresse, Passwort und seine ShopUrl zur Registrierung eingeben können.
+\item Die Passworteingabe sollte blicksicher sein und verifiziert werden.
+\item Nach der Registrierung bekommt man eine Erfolgsmeldung und wird auf die Loginseite weitergeleitet.
+\end{enumerate}
+\item Login-Mechanismus
+\begin{enumerate}
+\item Die Logindaten sollen die Email-Adresse und das Passwort sein
+\item Bei Falscheingabe von Email-Adresse oder Passwort soll eine entsprechende Rückmeldung erfolgen.
+\end{enumerate}
+\item Logout-Mechanismus
+\begin{enumerate}
+\item Im Nutzerbereich der App soll eine Möglichkeit zum Beenden der Session/Logout geschaffen werden.
+\item Beim Ausloggen soll die Session beendet und eine Weiterleitung auf den Loginbereich erfolgen.
+\end{enumerate}
+\item Navigation im Nutzerbereich
+\begin{enumerate}
+\item Alle wesentlichen Benutzerinteraktionen der App sollen nur über ein einziges Navigationspanel entweder an der Seite oder oben als Leiste durchführbar sein
+\item Die Navigation sollte einen logischen und intuitiven Aufbau haben und sollte vom Design her einheitlich sein
+\end{enumerate}
+\item Graphische Darstellungen statistischer Auswertungen
+\begin{enumerate}
+\item Die Umsätze und Bestellungen im Onlineshop sollen wahlweise als Balken- oder Liniendiagramme darstellbar sein.
+\item Für die Diagramme soll der Zeitraum auswählbar über die Navigationsleiste sein. Die auswählbaren Zeiträume sollen mindestens die einzelnen Kalenderwochen, Monate und Jahre umfassen.
+\item Es soll möglich sein, die Diagramme wahlweise aufgrund von Brutto - oder Nettoumsätzen anzuzeigen.
+\end{enumerate}
+\item Währungsfilter
+\begin{enumerate}
+\item Die Anzeige der Statistiken und Berichte sollte abhängig von der  ausgewählten Währung sein, da im Onlineshop mehrere Währungen eingestellt sein können.
+\item Hierzu muss eine Auswahlmöglichkeit über einen Währungsfilter geschaffen werden.
+\end{enumerate}
+\item Datensynchronisation
+\begin{enumerate}
+\item Es soll die Möglichkeit für den Nutzer geschaffen werden über einen \gqq{Button} die Datensynchronisation zwischen seinem Shop und der App auszulösen, falls der Nutzer eine neuerliche Synchronisation für notwendig hält.
+\item Der Nutzer soll eine Rückmeldung über den Prozess der Synchronisation bekommen und eine entsprechende Mitteilung falls die Synchronisation fehlgeschlagen ist.
+\item Die Daten sollen über REST-Calls unter Verwendung der ePages REST-API vom Onlineshop angefordert und in einer MySQL-Datenbank abgespeichert werden.
+\end{enumerate}
+\item Datenbank
+\begin{enumerate}
+\item Zum Aktualisieren der App-Statistiken durch Benutzerinteraktionen abseits der Datensynchronisation sollen keine REST-Calls mehr ausgelöst werden, um die ePages-REST-API nicht zu sehr zu belasten. Vielmehr sollen hier die benötigten Daten aus der Datenbank abgefragt werden.
+\item Es soll ein Datenbankmodell in der 3. Normalform entworfen werden.
+\end{enumerate}
+\item Umsatzstatistik nach Bundesland
+\begin{enumerate}
+\item Es soll über ein Tortendiagramm möglich sein, die Umsatzverteilung pro Bundesland angezeigt zu bekommen.
+\item Außerdem sollen Shopkunden dabei berücksichtigt werden, denen kein Bundesland zugewiesen ist oder die im Ausland wohnen.
+\end{enumerate}
+\item Darstellung umsatzstärkster Kunden
+\begin{enumerate}
+\item Die App soll in tabellarischen Stil die Kunden geordnet nach Umsatz auflisten mit Namen, Email-Adresse, Gesamtumsatz, Gesamtzahl an Bestellungen und letztem Bestelldatum.
+\item Die Erstellung der Tabelle sollte dynamisch erfolgen.
+\end{enumerate}
+\item Design
+\begin{enumerate}
+\item Die gesamte App sollte zumindest ein grundlegendes responsives Verhalten aufgrund des 12er-Grid-Systems zeigen.
+\end{enumerate}
+\end{enumerate}
 
-\Zwischenstand{Analysephase}{Analyse}
+
+
