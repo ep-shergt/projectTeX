@@ -6,23 +6,34 @@
 
 \usepackage[
 	automark, % Kapitelangaben in Kopfzeile automatisch erstellen
-	headsepline, % Trennlinie unter Kopfzeile
+	% headsepline, % Trennlinie unter Kopfzeile
 	ilines % Trennlinie linksbündig ausrichten
 ]{scrpage2}
 
+\usepackage{fancyhdr}
+
+\fancyhf{}
+\fancyhead[C]{\thepage}
+\pagestyle{fancy}
+
+% redefine the plain pagestyle
+\fancypagestyle{plain}{%
+\fancyhf{} % clear all header and footer fields
+\fancyhead[C]{\thepage} % except the center
+}
 
 % Kopf- und Fußzeilen ----------------------------------------------------------
-\pagestyle{headings}
+%\pagestyle{headings}
 % chapterpagestyle gibt es nicht in scrartcl
 %\renewcommand{\chapterpagestyle}{scrheadings}
 \clearscrheadfoot
 
 % Kopfzeile
-\renewcommand{\headfont}{\normalfont} % Schriftform der Kopfzeile
-\ihead{\large{\textsc{\titel}}\\ \small{\untertitel} \\[2ex] \textit{\headmark}}
-\chead{}
-\ohead{\includegraphics[scale=0.2]{\betriebLogo}}
-\setlength{\headheight}{15mm} % Höhe der Kopfzeile
+%\renewcommand{\headfont}{\normalfont} % Schriftform der Kopfzeile
+%\ihead{\large{\textsc{\titel}}\\ \small{\untertitel} \\[2ex] %\textit{\headmark}}
+%\chead{}
+%\ohead{\includegraphics[scale=0.2]{\betriebLogo}}
+%\setlength{\headheight}{15mm} % Höhe der Kopfzeile
 %\setheadwidth[0pt]{textwithmarginpar} % Kopfzeile über den Text hinaus verbreitern (falls Logo den Text überdeckt)
 
 % Fußzeile
@@ -36,7 +47,7 @@
 % Abstand zwischen Nummerierung und Überschrift definieren
 % > Schön wäre hier die dynamische Berechnung des Abstandes in Abhängigkeit
 % > der Verschachtelungstiefe des Inhaltsverzeichnisses
-\newcommand{\headingSpace}{1.5cm}
+%\newcommand{\headingSpace}{1.5cm}
 
 % Abschnittsüberschriften im selben Stil wie beim Inhaltsverzeichnis einrücken
 \renewcommand*{\othersectionlevelsformat}[3]{
