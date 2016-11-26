@@ -2,13 +2,43 @@
 \section{Abnahmephase} 
 \label{sec:Abnahmephase}
 
+\subsubsection{CodeReview}
+Das Code-Review hat mein Ausbilder durchgeführt. Dabei wurden folgende Verbesserungsvorschläge gemacht, die aus Zeitgründen noch nicht umgesetzt werden konnten:
+
 \begin{itemize}
-	\item Welche Tests (\zB Unit-, Integrations-, Systemtests) wurden durchgeführt und welche Ergebnisse haben sie geliefert (\zB Logs von Unit Tests, Testprotokolle der Anwender)?
-	\item Wurde die Anwendung offiziell abgenommen?
+\item Verbessertes Session-Handling:\\
+Die Cookie-Ablaufzeit sollte sich bei Interaktion mit der App erneuern und synchron zur Server-Session sein. Nach Ablauf des Cookies sollte der Nutzer automatisch eine Meldung erhalten, dass er ausgeloggt wurde.
+\item Verbesserte Modularisierung:\\
+Die AJAX-Requests zur Aktualisierung des Zustands der Kindkomponenten sollten nicht Teil der App/Eltern-Komponente sein, sondern Teil der einzelnen Komponenten, welche über definierte Routen zum Aktualisieren verleitet werden, falls das entsprechende Ereignis dazu in der Eltern-Komponente ausgelöst wurde.
+\item Verbesserte Performance:\\
+Solange keine Daten in der Datenbank geändert wurden, reicht es die Daten einmalig vom Server zu holen und auf dem Client zwischenzuspeichern. Alle Abfragen passieren dann clientseitig, entlasten den Server und sollten die Performance verbessern.
+
 \end{itemize}
 
-\paragraph{Beispiel}
-Ein Auszug eines Unit Tests befindet sich im \Anhang{app:Test}. Dort ist auch der Aufruf des Tests auf der Konsole des Webservers zu sehen.
+\subsubsection{QA-Test}
+
+Um die implementierten Funktionalitäten zu testen, hat sich eine teaminterne Kollegin aus dem QA-Bereich dazu bereit erklärt die App auf Nutzertauglichkeit/Usability zu testen. Aus Termingründen war der Test erst recht spät gegen Ende des Projekts möglich, sodass die gefundenen Mängel nur aufgenommen, aber während der Anfertigung und Fertigstellung der Projektdokumentation nicht behoben werden konnten. Der Test hat folgende Mängel zu Tage gefördert:
+
+\begin{enumerate}
+\item Wechsel der Währung:\\
+Es gibt ein Aktualisierungsproblem - Die alte Top-Ten-Liste ist nach dem Wechsel noch angezeigt.
+\item Shopumsatz und Umsatzsteuer ON/OFF:\\
+Da die Umsatzsteuer ein durchlaufender Posten ist, ist die Anzeige mit Steuer nicht sehr sinnvoll. Der Schalter kann dann auch entfallen.
+\item Bestellung nach Eingangsdatum - Skalierung der Anzahl der Bestellungen:\\
+Nur ganze Zahlen sollten angezeigt werden. Ist die Menge sehr klein, werden Zehntel abgebildet.
+\item Zeitraum auswählen: --> Monat:\\
+Durch die unterschiedliche Länge der Monatsnamen hüpft beim Betätigen des Rückwärtspfeiles das Monats- und das Jahresfeld - Besser ist hier mit einer festen Breite für das Monatsfeld zu arbeiten.
+\item Darstellungsart wechseln:\\
+Die Einstellung \gqq{davon bezahlte Rechnungen anzeigen} ist Off, d.h. wird beim Wechsel der Darstellungsart nicht berücksichtigt. Diese werden mit angezeigt.
+\item DropDown Felder für Währungsauswahl, Zeitraum und Darstellungsart:\\
+Die Auswahlfelder sollten unterhalb der Menüleiste angezeigt werden.
+\item TopTen-Liste:\\
+In der Umsatzspalte bitte alle Beträge mit zwei Stellen nach dem Komma anzeigen und die Tausenderstelle kennzeichnen.
+\item Gesamtumsatzanteile nach Bundesland:\\
+Gruppen, die einen Mindestprozentsatz nicht überschreiten (z.B. <0,5\%), sollten in die Gruppe \gqq{Andere} aufgenommen werden. (Hamburg mit 0,2\% ist separiert dargestellt)
+\end{enumerate}
+
+Eine Einführungs- oder Deploymentphase entfällt bei diesem Projekt, da noch viele Nachbesserungen und Ergänzungen durchgeführt werden müssen bevor das Produkt-Management der Integration der App im ePages-App-Store zustimmt.
 
 
-\Zwischenstand{Abnahmephase}{Abnahme}
+

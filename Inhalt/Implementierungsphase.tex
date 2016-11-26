@@ -2,39 +2,76 @@
 \section{Implementierungsphase} 
 \label{sec:Implementierungsphase}
 
+\subsection{Verwendete Bibliotheken und Tools}
+\label{sec:Tools}
+Der Einstiegspunkt für die gesamte App ist die \textit{index.php}-Datei zu sehen im \Anhang{app:index}. Die verwendeten Javascript-Dateien für die App umfassen die JQuery-Bibliothek, die darauf aufbauende Materialize-Bibliothek als CSS-Framework und die Haupt-Javascript-Datei \textit{main.js}, welche im \textit{build}-Ordner liegt. Diese Datei enthält die gesamte ReactJS-Logik und die gebauten Komponenten. Erzeugt wurde sie durch einen Gulp-Task. Gulp \footnote{http://gulpjs.com} ist ein Task Runner, der häufig in Verbindung mit ReactJS eingesetzt wird. Alle benötigten Bibliotheken liegen lokal vor und sind damit unabhängig von einer vorhandenen Netzwerkverbindung.
+
 \subsection{Implementierung der Datenstrukturen}
 \label{sec:ImplementierungDatenstrukturen}
 
-\begin{itemize}
-	\item Beschreibung der angelegten Datenbank (\zB Generierung von \acs{SQL} aus Modellierungswerkzeug oder händisches Anlegen), \acs{XML}-Schemas \usw.
-\end{itemize}
+Ausgangspunkt hierfür ist das Datenmodell aus \ref{sec:Datenmodell}, welches Anlass zur Erstellung der in \Anhang{app:datenbank} aufgeführten miteinander in Verbindung stehenden Tabellen hat. Primär- und Fremdschlüssel sind entsprechend gekennzeichnet. Man beachte, dass zwischen dem Onlineshop und dem Kunden eine m:n Beziehung besteht, da ein Kunde in verschiedenen Onlineshops einkaufen kann, sodass hier eine Zwischentabelle vonnöten ist. Die Tabelle für die Artikel/Produkte wird nur pro forma angelegt, da diese während der Dauer des Projekts noch nicht mit Daten gefüllt werden kann, sodass auch keine Beziehungen zu den anderen Tabellen hergestellt werden können. Die Tabelle tbl\_states gibt Auskunft darüber, ob und in welchem Bundesland der Kunde wohnhaft ist. Die Anbindung an den Shop geschieht über das Attribut shop\_url und dem besonders geheimzuhaltenden access\_token aus der Tabelle tbl\_shop, der während des Registrierungsprozesses von epages erzeugt und automatisch in der App-Datenbank abgelegt wird.
 
+Die Erstellung der Tabellen wird unter Verwendung des Datenbank-Management-Systems \textit{phpMyAdmin} \footnote{https://www.phpmyadmin.net/} durchgeführt, was sehr einfach und intuitiv zu bedienen ist und daher auch für die Verwaltung der Tabellen und deren Daten verwendet wird. Eine Screenshot von den in \textit{phpMyAdmin} angelegten Tabellen ist im \Anhang{app:phpmyadmin} zu sehen.
 
 \subsection{Implementierung der Benutzeroberfläche}
 \label{sec:ImplementierungBenutzeroberflaeche}
 
-\begin{itemize}
-	\item Beschreibung der Implementierung der Benutzeroberfläche, falls dies separat zur Implementierung der Geschäftslogik erfolgt (\zB bei \acs{HTML}-Oberflächen und Stylesheets).
-	\item \Ggfs Beschreibung des Corporate Designs und dessen Umsetzung in der Anwendung.
-	\item Screenshots der Anwendung
-\end{itemize}
+\paragraph{Loginbereich} Für die Benutzeroberfläche des Login- und Registrierungsbereichs wird sich an diverser anderer Apps orientiert. Dabei fiel auch die Wahl auf die zu verwendende Schriftart \gqq{Dosis:700}, die in vielen modernen Apps zur Anwendung kommt.
+\begin{figure}[htb]
+\centering
+\includegraphicsKeepAspectRatio{login.png}{0.7}
+\caption{Design und Aufbau des Loginbereichs}
+\label{fig:loginbereich}
+\end{figure} 
+Wie in \Abbildung{loginbereich} zu erkennen sind alle Texte in Deutsch verfasst. Dies wird innerhalb dieses Projekt für die gesamte App gelten. Über eine Lokalisierung und Unterstützung mehrerer Sprachen kann man sich abseits dieses Projektes später Gedanken machen.
+\newpage
+\paragraph{Header im Nutzerbereich}
+Die Implementierung des Headers im Nutzerbereich nach erfolgreichem Einloggen in die App ist in \Abbildung{nutzerbereich} zu sehen.
+\begin{figure}[htb]
+\centering
+\includegraphicsKeepAspectRatio{navigation.png}{1.0}
+\caption{Design und Aufbau des Headers im Benutzerbereich}
+\label{fig:nutzerbereich}
+\end{figure}
+Alle Interaktionen des Benutzers mit der App sollen über die Menüleiste über davon zugängliche Dropdown-Felder oder Buttons erfolgen wie in \Abbildung{dropdown} zu erkennen. Mittig oben erscheint der Shopname des Nutzers, links oben eine Willkommensnachricht und rechts oben die Möglichkeit zum Ausloggen.
+ \begin{figure}[htb]
+\centering
+\includegraphicsKeepAspectRatio{dropdown.png}{1.0}
+\caption{Beispiel eines Dropdown-Feldes nach einem Klickereignis}
+\label{fig:dropdown}
+\end{figure}
+\paragraph{Anzeige der Statistiken}
+Im Nutzerbereich werden dem Shopbesitzer insgesamt drei Diagramme angezeigt, zwei sind in \Abbildung{umsatz} zu sehen.
+\begin{figure}[htb]
+\centering
+\includegraphicsKeepAspectRatio{sales.png}{1.0}
+\caption{Diagramme für statistische Auswertungen}
+\label{fig:umsatz}
+\end{figure}
+Die Balkendiagramme stellen den Umsatz für die ausgewählte Währung pro Tag, Woche, Monat oder Jahr dar je nach Auswahl des Nutzers. Das Tortendiagramm schlüsselt den Gesamtumsatz nach Bundesländer auf, wobei alle ausländischen oder nicht zugeordneten Umsätze unter die Kategorie \gqq{Andere} fallen. Ein drittes hier nicht sichtbares Diagramm stellt die Anzahl der Bestellungen pro gewähltem Zeitraum dar und zeigt zusätzlich an, ob diese schon bezahlt sind oder nicht.
 
-\paragraph{Beispiel}
-Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich im \Anhang{Screenshots}.
-
+Des Weiteren wird weiter unten eine Tabelle angezeigt, die die zehn umsatzstärksten Kunden sortiert nach Umsatz auflistet.
+\begin{figure}[htb]
+\centering
+\includegraphicsKeepAspectRatio{tttable.png}{1.0}
+\caption{Top-Ten-Tabelle der umsatzstärksten Kunden}
+\label{fig:umsatz}
+\end{figure}
 
 \subsection{Implementierung der Geschäftslogik}
 \label{sec:ImplementierungGeschaeftslogik}
 
-\begin{itemize}
-	\item Beschreibung des Vorgehens bei der Umsetzung/Programmierung der entworfenen Anwendung.
-	\item \Ggfs interessante Funktionen/Algorithmen im Detail vorstellen, verwendete Entwurfsmuster zeigen.
-	\item Quelltextbeispiele zeigen.
-	\item Hinweis: Wie in Kapitel~\ref{sec:Einleitung}: \nameref{sec:Einleitung} zitiert, wird nicht ein lauffähiges Programm bewertet, sondern die Projektdurchführung. Dennoch würde ich immer Quelltextausschnitte zeigen, da sonst Zweifel an der tatsächlichen Leistung des Prüflings aufkommen können.
-\end{itemize}
+Exemplarisch wird hier die Implementierung des Synchronisationsprozesses aus \Anhang{app:sequenz} aufgeführt. Der Code dazu ist im Anhang zu finden. Nach einem Klick auf den SYNC-Button wird zunächst die Funktion \textit{loadSalesData()} aufgerufen, siehe \Anhang{app:loadsales}. Diese löst einen AJAX-Request an den Server aus. Dort wird die Funktion \textit{handleLoadShopData()} aufgerufen, siehe \Anhang{app:loadsalesphp}, welche REST-calls zum Shop des App-Nutzers abgesetzt, um alle relevanten Shop- und Bestelldaten zu holen, die dann in die Datenbank eingefügt werden.
+Anschließend wird bei erfolgreicher Ausführung des AJAX-Requests in der \textit{done()}-Methode die Funktion \textit{loadCurrentSales(event, month, year, tax, paidOrders, currency, currencySymbol)} aufgerufen, welche sich über mehrere AJAX-Requests alle aktuellen Daten für die Appstatistiken aus der Datenbank beschafft und diese an die Komponenten zur Aktualisierung ihrer Datenzustände und zwecks Neuladens weiterreicht.  
 
-\paragraph{Beispiel}
-Die Klasse \texttt{Com\-par\-ed\-Na\-tu\-ral\-Mo\-dule\-In\-for\-ma\-tion} findet sich im \Anhang{app:CNMI}.  
+\subsection{Implementierung des Session-Managements}
+\label{sec:Session}
 
-
-\Zwischenstand{Implementierungsphase}{Implementierung}
+Bei erfolgreichem Einloggen des Nutzers wird eine Weiterleitungs-URL aus einem Cookie und einem Serversessiontoken zusammengebaut, wie in \Abbildung{cookie} zu sehen. Der Cookie ist acht Stunden lang gültig. Auf der App-Komponente angelangt, wird der Sessiontoken auf dem Server nochmal gegengeprüft. Erst nach erfolgreicher Prüfung wird die App-Komponente geladen. 
+\begin{figure}[htb]
+\centering
+\includegraphicsKeepAspectRatio{cookie.png}{1.0}
+\caption{Cookiesetzung in der Login-Komponente}
+\label{fig:cookie}
+\end{figure}
+Beim Ausloggen wird der Sessiontoken auf dem Server gelöscht und der Nutzer wird auf die Login-Komponente umgeleitet. Damit wird die Session-URL ungültig gemacht.
