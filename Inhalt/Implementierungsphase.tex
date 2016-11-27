@@ -2,16 +2,23 @@
 \section{Implementierungsphase} 
 \label{sec:Implementierungsphase}
 
+Für einen begrenzten Zeitraum kann die App über die URL \url{http://testapp.maxpower.rigel.uberspace.de/stat_app_new/app} getestet werden. Dazu muss als Emailadresse \gqq{max@power.de} und als Passwort \gqq{qwert6} verwendet werden.
+
+Über den Link \url{http://devshop.epages.com/epages/epagesdevD20161010T091137R63.sf} kann auch in dem Testshop ein Kunde neu angelegt werden, der dann Testeinkäufe tätigen kann, die in den Statistiken der App erscheinen sollten. In dem Testshop kann der Bestellvorgang vollständig durchlaufen werden, allerdings sind alle angebotenen Waren nur zu Testzwecken dort und können nicht wirklich erworben werden.
+
+Außerdem ist das Projekt auf dem \acs{GitHub}-Server abgelegt und kann unter dem Link \url{https://github.com/ep-shergt/Stat-App} eingesehen werden.
+
 \subsection{Verwendete Bibliotheken und Tools}
 \label{sec:Tools}
-Der Einstiegspunkt für die gesamte App ist die \textit{index.php}-Datei zu sehen im \Anhang{app:index}. Die verwendeten Javascript-Dateien für die App umfassen die JQuery-Bibliothek, die darauf aufbauende Materialize-Bibliothek als CSS-Framework und die Haupt-Javascript-Datei \textit{main.js}, welche im \textit{build}-Ordner liegt. Diese Datei enthält die gesamte ReactJS-Logik und die gebauten Komponenten. Erzeugt wurde sie durch einen Gulp-Task. Gulp \footnote{\url{http://gulpjs.com}} ist ein Task Runner, der häufig in Verbindung mit ReactJS eingesetzt wird. Alle benötigten Bibliotheken liegen lokal vor und sind damit unabhängig von einer vorhandenen Netzwerkverbindung.
+Bei der Implementierung von der React.js-Logik wurde sich grob an dem React-Online-Kurs \cite{Wes} orientiert.
+Der Einstiegspunkt für die gesamte App ist die \textit{index.php}-Datei zu sehen im \Anhang{app:index}. Die verwendeten Javascriptdateien für die App umfassen die JQuery-Bibliothek \footnote{\url{http://jquery.com/}}, die darauf aufbauende Materialize-Bibliothek als \acs{CSS}-Framework und die Haupt-Javascript-Datei \textit{main.js}, welche im \textit{build}-Ordner liegt. Diese Datei enthält die gesamte ReactJS-Logik und die gebauten Komponenten. Erzeugt wurde sie durch einen Gulp-Task. Gulp \footnote{\url{http://gulpjs.com}} ist ein Task Runner, der häufig in Verbindung mit ReactJS eingesetzt wird. Einen guter Leitfaden zur Verwendung von ReactJS gibt \cite{React}. Alle benötigten Bibliotheken liegen lokal vor und sind damit unabhängig von einer vorhandenen Netzwerkverbindung.
 
 \subsection{Implementierung der Datenstrukturen}
 \label{sec:ImplementierungDatenstrukturen}
 
 Ausgangspunkt hierfür ist das Datenmodell aus \ref{sec:Datenmodell}, welches Anlass zur Erstellung der in \Anhang{app:datenbank} aufgeführten miteinander in Verbindung stehenden Tabellen hat. Primär- und Fremdschlüssel sind entsprechend gekennzeichnet. Man beachte, dass zwischen dem Onlineshop und dem Kunden eine m:n Beziehung besteht, da ein Kunde in verschiedenen Onlineshops einkaufen kann, sodass hier eine Zwischentabelle vonnöten ist. Die Tabelle für die Artikel/Produkte wird nur pro forma angelegt, da diese während der Dauer des Projekts noch nicht mit Daten gefüllt werden kann, sodass auch keine Beziehungen zu den anderen Tabellen hergestellt werden können. Die Tabelle tbl\_states gibt Auskunft darüber, ob und in welchem Bundesland der Kunde wohnhaft ist. Die Anbindung an den Shop geschieht über das Attribut shop\_url und dem besonders geheimzuhaltenden access\_token aus der Tabelle tbl\_shop, der während des Registrierungsprozesses von epages erzeugt und automatisch in der App-Datenbank abgelegt wird.
 
-Die Erstellung der Tabellen wird unter Verwendung des Datenbank-Management-Systems \textit{phpMyAdmin} \footnote{\url{https://www.phpmyadmin.net/}} durchgeführt, was sehr einfach und intuitiv zu bedienen ist und daher auch für die Verwaltung der Tabellen und deren Daten verwendet wird. Eine Screenshot von den in \textit{phpMyAdmin} angelegten Tabellen ist im \Anhang{app:phpmyadmin} zu sehen.
+Die Erstellung der Tabellen wird unter Verwendung des \acs{DBMS} \textit{phpMyAdmin} \footnote{\url{https://www.phpmyadmin.net/}} durchgeführt, was sehr einfach und intuitiv zu bedienen ist und daher auch für die Verwaltung der Tabellen und deren Daten verwendet wird. Eine Screenshot von den in \textit{phpMyAdmin} angelegten Tabellen ist im \Anhang{app:phpmyadmin} zu sehen. Zur Vereinfachung und Modularisierung von Datenbankabfragen wurde eine eigene Datenbankklasse nach dem Tutorial von \cite{Arthur} implementiert.
 
 \subsection{Implementierung der Benutzeroberfläche}
 \label{sec:ImplementierungBenutzeroberflaeche}
@@ -61,6 +68,12 @@ Des Weiteren wird weiter unten eine Tabelle angezeigt, die die zehn umsatzstärk
 \subsection{Implementierung der Geschäftslogik}
 \label{sec:ImplementierungGeschaeftslogik}
 
+Die Nutzung der ePages-REST-API unter Verwendung von PHP ist in \cite{epagesphp} dokumentiert. Alle bestehenden Methoden zur Absetzung von REST-calls sind dort beschrieben.
+
+Zusätzlich wurde die Online-PHP-Dokumentation \cite{phpdoc} verwendet, um die korrekte Verwendung der benötigten PHP-Methoden zu erlernen.
+
+Daneben wurde auch auf \cite{javascript} als Online-Javascript-Dokumentation zurückgegriffen.
+  
 Exemplarisch wird hier die Implementierung des Synchronisationsprozesses aus \Anhang{app:sequenz} aufgeführt. Der Code dazu ist im Anhang zu finden. Nach einem Klick auf den SYNC-Button wird zunächst die Funktion \textit{loadSalesData()} aufgerufen, siehe \Anhang{app:loadsales}. Diese löst einen AJAX-Request an den Server aus. Dort wird die Funktion \textit{handleLoadShopData()} aufgerufen, siehe \Anhang{app:loadsalesphp}, welche REST-calls zum Shop des App-Nutzers abgesetzt, um alle relevanten Shop- und Bestelldaten zu holen, die dann in die Datenbank eingefügt werden.
 Anschließend wird bei erfolgreicher Ausführung des AJAX-Requests in der \textit{done()}-Methode die Funktion \textit{loadCurrentSales(event, month, year, tax, paidOrders, currency, currencySymbol)} aufgerufen, welche sich über mehrere AJAX-Requests alle aktuellen Daten für die Appstatistiken aus der Datenbank beschafft und diese an die Komponenten zur Aktualisierung ihrer Datenzustände und zwecks Neuladens weiterreicht.  
 

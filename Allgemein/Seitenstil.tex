@@ -2,44 +2,44 @@
 
 % Seitenränder -----------------------------------------------------------------
 \setlength{\topskip}{\ht\strutbox} % behebt Warnung von geometry
-\geometry{a4paper,left=35mm,right=30mm,top=40mm,bottom=30mm}
+\geometry{a4paper,left=35mm,right=30mm,top=0mm,bottom=65mm}
 
 \usepackage[
 	automark, % Kapitelangaben in Kopfzeile automatisch erstellen
-	% headsepline, % Trennlinie unter Kopfzeile
+	headsepline, % Trennlinie unter Kopfzeile
 	ilines % Trennlinie linksbündig ausrichten
 ]{scrpage2}
 
 \usepackage{fancyhdr}
 
-\fancyhf{}
-\fancyhead[C]{\thepage}
 \pagestyle{fancy}
+\fancypagestyle{plain}
 
-% redefine the plain pagestyle
-\fancypagestyle{plain}{%
 \fancyhf{} % clear all header and footer fields
-\fancyhead[C]{\thepage} % except the center
-}
+
+\fancyhead[C]{\thepage}
+\renewcommand{\headrulewidth}{0.0pt}
+\setlength\voffset{2.7cm}
+\setlength\headsep{2.0cm}
 
 % Kopf- und Fußzeilen ----------------------------------------------------------
 %\pagestyle{headings}
 % chapterpagestyle gibt es nicht in scrartcl
 %\renewcommand{\chapterpagestyle}{scrheadings}
-\clearscrheadfoot
+%\clearscrheadfoot
 
-% Kopfzeile
+%% Kopfzeile
 %\renewcommand{\headfont}{\normalfont} % Schriftform der Kopfzeile
-%\ihead{\large{\textsc{\titel}}\\ \small{\untertitel} \\[2ex] %\textit{\headmark}}
+%\ihead{\large{\textsc{\titel}}\\ \small{\untertitel} \\[2ex] \textit{\headmark}}
 %\chead{}
 %\ohead{\includegraphics[scale=0.2]{\betriebLogo}}
 %\setlength{\headheight}{15mm} % Höhe der Kopfzeile
-%\setheadwidth[0pt]{textwithmarginpar} % Kopfzeile über den Text hinaus verbreitern (falls Logo den Text überdeckt)
+%%\setheadwidth[0pt]{textwithmarginpar} % Kopfzeile über den Text hinaus verbreitern (falls Logo den Text überdeckt)
 
-% Fußzeile
-\ifoot{\autorName}
-\cfoot{}
-\ofoot{\pagemark}
+%% Fußzeile
+%\ifoot{\autorName}
+%\cfoot{}
+%\ofoot{\pagemark}
 
 % Überschriften nach DIN 5008 in einer Fluchtlinie
 % ------------------------------------------------------------------------------
@@ -47,7 +47,7 @@
 % Abstand zwischen Nummerierung und Überschrift definieren
 % > Schön wäre hier die dynamische Berechnung des Abstandes in Abhängigkeit
 % > der Verschachtelungstiefe des Inhaltsverzeichnisses
-%\newcommand{\headingSpace}{1.5cm}
+\newcommand{\headingSpace}{1.5cm}
 
 % Abschnittsüberschriften im selben Stil wie beim Inhaltsverzeichnis einrücken
 \renewcommand*{\othersectionlevelsformat}[3]{
